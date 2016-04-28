@@ -1,0 +1,12 @@
+<div ng-class="getValidationClass()" ng-form="form">
+    <ng-transclude></ng-transclude>
+    <div class="validation-error" ng-repeat="message in fieldErrors.messages">
+        <p>{{::message}}</p>
+    </div>
+    <div class="validation-warning" ng-repeat="message in fieldWarnings.messages">
+        <p>{{::message}}</p>
+    </div>
+    <div class="validation-error" ng-repeat="(key, errors) in form.$error">
+        <p>{{::getMessageFromError(key)}}</p>
+    </div>
+</div>
