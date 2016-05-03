@@ -25,7 +25,8 @@
                 decimalSeparator: '@?',
                 groupSeparator: '@?',
                 max: '=?',
-                min: '=?'
+                min: '=?',
+                decimals: '=?'
             },
             require: 'ngModel',
             restrict: 'A'
@@ -60,7 +61,7 @@
             // Put a watch on the min, max and decimal value changes in the attribute.
             scope.$watch('min', onMinChanged);
             scope.$watch(attrs.maxDisplayValue, onMaxChanged);
-            scope.$watch(attrs.decimals, onDecimalsChanged);
+            scope.$watch('decimals', onDecimalsChanged);
             scope.$watch(attrs.formatting, onFormattingChanged);
 
             // Setup decimal formatting.
@@ -120,7 +121,8 @@
              */
             function round(value) {
                 var d = Math.pow(10, decimals);
-                return Math.round(value * d) / d;
+                lastValidValue = Math.round(value * d) / d;
+                return lastValidValue;
             }
 
             /**
